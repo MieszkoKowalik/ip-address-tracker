@@ -1,0 +1,11 @@
+$breakpoints: (
+  "sm": "(min-width: 550px)",
+  "md": "(min-width: 700px)",
+  "lg": "(min-width: 1280px)",
+);
+
+$ff-primary: "Rubik", sans-serif;
+$clr-primary: hsl(0, 0%, 17%);
+$clr-secondary: hsl(0, 0%, 59%);
+$clr-title: #fff;
+$clr-error: hsl(0, 87%, 67%);

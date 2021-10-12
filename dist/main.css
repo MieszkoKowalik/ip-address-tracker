@@ -1,0 +1,242 @@
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
+  \*************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap);
+/*!*****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss (1) ***!
+  \*****************************************************************************************************************/
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 270px;
+  height: 1px;
+}
+
+fieldset {
+  border: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+menu[role=list],
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+@keyframes submited {
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.tracker {
+  min-width: 270px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.tracker__header {
+  width: 100%;
+  flex-basis: 300px;
+  flex-shrink: 0;
+  background-image: url(assets/pattern-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.tracker__header-container {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1110px;
+  width: 87%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tracker__title {
+  margin-top: 1em;
+  margin-bottom: 1.15em;
+  font-size: 1.625rem;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  color: #fff;
+}
+@media (min-width: 700px) {
+  .tracker__title {
+    font-size: 2rem;
+    margin-bottom: 1em;
+  }
+}
+.tracker__search {
+  position: relative;
+  width: 100%;
+  max-width: 555px;
+}
+.tracker__search.submited {
+  animation: 0.15s ease submited;
+}
+.tracker__search-error-msg {
+  display: none;
+  position: absolute;
+  bottom: -22px;
+  left: 1em;
+  color: #f46262;
+}
+.error .tracker__search-error-msg {
+  display: block;
+}
+.tracker__search-input {
+  width: 100%;
+  padding: 1em;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.125rem;
+}
+.error .tracker__search-input {
+  box-shadow: 0 0 3px 3px #f46262;
+}
+.tracker__search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58px;
+  height: 58px;
+  border: none;
+  background-color: #000;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.tracker__search-btn:hover, .tracker__search-btn:focus {
+  background-color: #2b2b2b;
+}
+.tracker__results {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  z-index: 1000;
+  width: 100%;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+@media (min-width: 1280px) {
+  .tracker__results {
+    bottom: -47px;
+    padding: 37px;
+    display: flex;
+  }
+}
+@media (min-width: 1280px) {
+  .tracker__result {
+    text-align: left;
+    flex-grow: 1;
+    flex-basis: 25%;
+  }
+}
+.tracker__result:not(:first-of-type) {
+  margin-top: 24px;
+}
+@media (min-width: 1280px) {
+  .tracker__result:not(:first-of-type) {
+    margin-top: unset;
+    padding-left: 32px;
+    position: relative;
+  }
+  .tracker__result:not(:first-of-type)::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.15;
+    background-color: #2b2b2b;
+    height: 100%;
+    width: 1px;
+  }
+}
+.tracker__result-title {
+  margin-bottom: 0.58em;
+  color: #969696;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.146em;
+}
+@media (min-width: 1280px) {
+  .tracker__result-title {
+    font-size: 0.75rem;
+  }
+}
+.tracker__result-text {
+  color: #2b2b2b;
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: -0.009em;
+}
+@media (min-width: 1280px) {
+  .tracker__result-text {
+    font-size: 1.625rem;
+  }
+}
+
+#map {
+  min-height: 200px;
+  flex-grow: 1;
+}

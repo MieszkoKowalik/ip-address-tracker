@@ -1,0 +1,11 @@
+@use "mixins";
+@use "variables";
+
+@keyframes submited {
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

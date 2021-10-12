@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist/"
+
+[functions]
+  # Directory with serverless functions, including background functions,
+  # to deploy. This is relative to the base directory if one has been set, 
+  # or the root directory if a base hasn’t been set.
+  directory = "functions/"
+
+	[dev]
+  command = "npm start" # Command to start your dev server
+  targetPort = 9000 # The port for your application server, framework or site generator
+  port = 8888 # The port that the netlify dev will be accessible on
+  
