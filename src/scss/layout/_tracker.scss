@@ -8,6 +8,8 @@
   &__header {
     width: 100%;
     flex-basis: 300px;
+    max-height: 300px;
+    z-index: 1000;
     flex-shrink: 0;
     background-image: url("../assets/pattern-bg.png");
     background-repeat: no-repeat;
@@ -88,29 +90,69 @@
     }
   }
   &__results {
-    position: absolute;
-    bottom: -24px;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    z-index: 1000;
-    width: 100%;
+    margin-top: 24px;
     padding: 24px;
+    max-height: 300px;
+    width: 100%;
+    position: relative;
     background-color: #fff;
     border-radius: 15px;
+    transition: max-height 0.3s ease-in-out;
     @include mq("lg") {
-      bottom: -47px;
+      margin-top: 47px;
       padding: 37px;
       display: flex;
+    }
+    &.isColapsed {
+      max-height: 70px;
+    }
+  }
+
+  &__results-btn {
+    position: absolute;
+    top: 38px;
+    right: 20px;
+    z-index: 1;
+    padding: 5px;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    & path {
+      stroke: black;
+      transition: stroke 0.2s;
+    }
+    &:hover {
+      path {
+        stroke: $clr-secondary;
+      }
+    }
+    & svg {
+      transform: rotate(-90deg);
+      width: 20px;
+      transition: transform 0.3s;
+      .isColapsed & {
+        transform: rotate(90deg);
+      }
     }
   }
 
   &__result {
+    opacity: 1;
+    transition: opacity 0.3s 0.1s ease-in-out;
+
     @include mq("lg") {
       text-align: left;
       flex-grow: 1;
       flex-basis: 25%;
     }
+    .isColapsed & {
+      opacity: 0;
+      transition: opacity 0.15s ease-in-out;
+    }
   }
+
   &__result:not(:first-of-type) {
     margin-top: 24px;
     @include mq("lg") {
@@ -149,9 +191,8 @@
       font-size: 1.625rem;
     }
   }
-}
-
-#map {
-  min-height: 200px;
-  flex-grow: 1;
+  &__map {
+    min-height: 200px;
+    flex-grow: 1;
+  }
 }
