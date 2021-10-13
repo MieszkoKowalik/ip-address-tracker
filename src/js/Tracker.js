@@ -54,29 +54,25 @@ export default class Tracker {
       url: "domain=",
     };
     const query = `${types[type]}${value}`;
-    try {
-      const response = await fetch(
-        `/.netlify/functions/fetchGeodata?query=${query}`
-      );
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.messages);
-      }
-      console.log(response);
-      console.log(data);
-      return {
-        ip: data.ip,
-        region: data.location.region,
-        city: data.location.city,
-        postalCode: data.location.postalCode,
-        lat: data.location.lat,
-        lng: data.location.lng,
-        timezone: data.location.timezone,
-        isp: data.isp,
-      };
-    } catch (err) {
-      console.error(err);
+    const response = await fetch(
+      `/.netlify/functions/fetchGeodata?query=${query}`
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("An error occured while fetching the data");
     }
+    console.log(response);
+    console.log(data);
+    return {
+      ip: data.ip,
+      region: data.location.region,
+      city: data.location.city,
+      postalCode: data.location.postalCode,
+      lat: data.location.lat,
+      lng: data.location.lng,
+      timezone: data.location.timezone,
+      isp: data.isp,
+    };
   }
 
   fetchGeolocationDataByIp(value) {
@@ -107,11 +103,6 @@ export default class Tracker {
     if (this.isValidIp(input)) {
       try {
         const geolocationData = await this.fetchGeolocationDataByIp(input);
-        if (!geolocationData) {
-          throw new Error(
-            "An error has occured while fetching the data, please make sure that such IP exists"
-          );
-        }
         this.updateDisplay(geolocationData);
       } catch (err) {
         console.log(err);
@@ -119,11 +110,6 @@ export default class Tracker {
     } else if (this.isValidUrl(input)) {
       try {
         const geolocationData = await this.fetchGeolocationDataByUrl(input);
-        if (!geolocationData) {
-          throw new Error(
-            "An error has occured while fetching the data, please make sure that such domain exists"
-          );
-        }
         this.updateDisplay(geolocationData);
       } catch (err) {
         console.error(err);
