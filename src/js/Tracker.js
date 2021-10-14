@@ -8,7 +8,8 @@ export default class Tracker {
     this.timezoneEl = document.querySelector("[data-timezone");
     this.ispEl = document.querySelector("[data-isp");
     this.inputEl = this.formEl.querySelector("[data-input]");
-
+    this.resultEls = [this.ipEl, this.locationEl, this.timezoneEl, this.ispEl];
+    this.loaderEls = document.querySelectorAll("[data-loader]");
     this.formAnimationClass = "submited";
     this.formErrorClass = "error";
 
@@ -58,11 +59,11 @@ export default class Tracker {
       `/.netlify/functions/fetchGeodata?query=${query}`
     );
     const data = await response.json();
+    console.log(response);
+    console.log(data);
     if (!response.ok) {
       throw new Error("An error occured while fetching the data");
     }
-    console.log(response);
-    console.log(data);
     return {
       ip: data.ip,
       region: data.location.region,
@@ -101,6 +102,8 @@ export default class Tracker {
     this.addFormAnimation();
     const input = this.inputEl.value.trim();
     if (this.isValidIp(input)) {
+      this.hideResults();
+      this.showLoaders();
       try {
         const geolocationData = await this.fetchGeolocationDataByIp(input);
         this.updateDisplay(geolocationData);
@@ -119,12 +122,42 @@ export default class Tracker {
       return;
     }
   }
-
-  updateDisplay(data) {
+  hideLoaders() {
+    this.loaderEls.forEach((el) => {
+      el.style.display = "none";
+    });
+  }
+  hideResults() {
+    this.resultEls.forEach((el) => {
+      el.style.display = "none";
+    });
+  }
+  showLoaders() {
+    this.loaderEls.forEach((el) => {
+      el.style.display = "block";
+    });
+  }
+  showResults() {
+    this.resultEls.forEach((el) => {
+      el.style.display = "block";
+      el.classList.add("fade-in");
+      el.addEventListener("animationend", () => {
+        el.classList.remove("fade-in");
+      });
+    });
+  }
+  updateResults(data) {
     this.ipEl.innerText = data.ip;
     this.locationEl.innerText = `${data.region}, ${data.city}, ${data.postalCode}`;
     this.timezoneEl.innerText = `UTC${data.timezone}`;
     this.ispEl.innerText = data.isp;
+  }
+
+  updateDisplay(data) {
+    this.hideLoaders();
+    this.showResults();
+    this.updateResults(data);
+
     this.map.changePosition(data.lat, data.lng);
   }
 
