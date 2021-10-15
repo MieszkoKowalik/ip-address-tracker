@@ -156,7 +156,7 @@
     }
   }
 
-  &__result:not(:first-of-type) {
+  &__result--not-first {
     margin-top: 24px;
     @include mq("lg") {
       margin-top: unset;
