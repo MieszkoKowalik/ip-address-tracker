@@ -28,7 +28,7 @@
               aria-label="Search for any IP adress or domain"
               placeholder="Search for any IP adress or domain"
             />
-            <small data-error class="tracker__search-error-msg">
+            <small role="alert" data-error class="tracker__search-error-msg">
               Please use a valid IP or domain.
             </small>
             <button
@@ -46,9 +46,9 @@
               </svg>
             </button>
           </form>
-          <div class="tracker__results">
-            <div class="error_msg" data-error-msg>An error has occured.</div>
-            <button data-btnColapse class="tracker__results-btn">
+          <div class="tracker__results" aria-atomic="true" aria-live="polite" >
+            <div class="error_msg" role="alert" data-error-msg>An error has occured.</div>
+            <button data-btnColapse aria-label="Colapse results" class="tracker__results-btn">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 14">
                 <path
                   fill="none"
