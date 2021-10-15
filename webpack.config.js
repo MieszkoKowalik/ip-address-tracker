@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { EnvironmentPlugin } = require("webpack");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: ["./src/js/main.js", "./src/scss/main.scss"],
   output: {
     filename: "bundle.js",
@@ -68,6 +68,6 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin(),
-    new EnvironmentPlugin(["API_KEY_MAP"]),
+    new EnvironmentPlugin({"API_KEY_MAP":""}),
   ],
 };
