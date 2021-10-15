@@ -1,5 +1,6 @@
 @use "../utilities" as *;
 @use "../components/loader";
+@use "../components/error";
 .tracker {
   min-width: 270px;
   height: 100%;
@@ -54,6 +55,7 @@
       bottom: -22px;
       left: 1em;
       color: $clr-error;
+      font-weight: 500;
       .error & {
         display: block;
       }

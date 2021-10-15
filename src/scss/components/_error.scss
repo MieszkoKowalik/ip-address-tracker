@@ -1,0 +1,16 @@
+@use "../utilities" as *;
+.error_msg {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  z-index: 20;
+  width: 80%;
+  transform: translateX(-50%);
+  padding: 0.7em 2em;
+  border-radius: 5px;
+  border: 1px solid $clr-error-lighter;
+  text-align: left;
+  color: $clr-error;
+  background-color: $clr-error-light;
+}

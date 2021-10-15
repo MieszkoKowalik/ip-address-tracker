@@ -29,7 +29,7 @@
               placeholder="Search for any IP adress or domain"
             />
             <small data-error class="tracker__search-error-msg">
-              Please use a valid IP or URL address
+              Please use a valid IP or domain.
             </small>
             <button
               aria-label="submit"
@@ -47,6 +47,7 @@
             </button>
           </form>
           <div class="tracker__results">
+            <div class="error_msg" data-error-msg>An error has occured.</div>
             <button data-btnColapse class="tracker__results-btn">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 14">
                 <path

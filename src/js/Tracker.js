@@ -10,6 +10,7 @@ export default class Tracker {
     this.inputEl = this.formEl.querySelector("[data-input]");
     this.resultEls = [this.ipEl, this.locationEl, this.timezoneEl, this.ispEl];
     this.loaderEls = document.querySelectorAll("[data-loader]");
+    this.errorMsgEl = document.querySelector("[data-error-msg]");
     this.formAnimationClass = "submited";
     this.formErrorClass = "error";
 
@@ -62,7 +63,9 @@ export default class Tracker {
     console.log(response);
     console.log(data);
     if (!response.ok) {
-      throw new Error("An error occured while fetching the data");
+      const error = new Error("An error occured while fetching the data");
+      error.code = response.status;
+      throw error;
     }
     return {
       ip: data.ip,
@@ -98,6 +101,28 @@ export default class Tracker {
     this.formEl.classList.remove(this.formErrorClass);
   }
 
+  handleError(err) {
+    let message;
+    if (err.code < 500) {
+      message =
+        "An error has occured while getting the data. Please make sure that such domain or IP exists.";
+    } else {
+      message = "An error has occured on our server. Please try again later.";
+    }
+    this.showError(message);
+    setTimeout(() => {
+      this.hideError();
+    }, 6000);
+  }
+  showError(msg) {
+    this.errorMsgEl.style.display = "block";
+    this.errorMsgEl.innerText = msg;
+  }
+
+  hideError() {
+    this.errorMsgEl.style.display = "none";
+  }
+
   async handleSubmit() {
     this.addFormAnimation();
     const input = this.inputEl.value.trim();
@@ -108,6 +133,7 @@ export default class Tracker {
         const geolocationData = await this.fetchGeolocationDataByIp(input);
         this.updateDisplay(geolocationData);
       } catch (err) {
+        this.handleError(err);
         console.log(err);
       }
     } else if (this.isValidUrl(input)) {
@@ -115,6 +141,7 @@ export default class Tracker {
         const geolocationData = await this.fetchGeolocationDataByUrl(input);
         this.updateDisplay(geolocationData);
       } catch (err) {
+        this.handleError(err);
         console.error(err);
       }
     } else {
