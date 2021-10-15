@@ -134,15 +134,13 @@ export default class Tracker {
         this.updateDisplay(geolocationData);
       } catch (err) {
         this.handleError(err);
-        console.log(err);
       }
-    } else if (this.isValidUrl(input)) {
+    } else if (this.isValidDomain(input)) {
       try {
         const geolocationData = await this.fetchGeolocationDataByUrl(input);
         this.updateDisplay(geolocationData);
       } catch (err) {
         this.handleError(err);
-        console.error(err);
       }
     } else {
       this.showFormError();
@@ -188,8 +186,8 @@ export default class Tracker {
     this.map.changePosition(data.lat, data.lng);
   }
 
-  isValidUrl(string) {
-    return this.isValidExpression("url", string);
+  isValidDomain(string) {
+    return this.isValidExpression("domain", string);
   }
   isValidIp(string) {
     return this.isValidExpression("ip", string);
@@ -197,7 +195,8 @@ export default class Tracker {
   isValidExpression(type, string) {
     const expressions = {
       ip: /(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}/g,
-      url: /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
+      domain:
+        /(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
     };
     const regex = new RegExp(expressions[type]);
 
