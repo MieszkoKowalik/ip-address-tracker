@@ -17,7 +17,7 @@ export default class Tracker {
     this.map = new Map();
 
     this.initEvents();
-    // this.initApp();
+    this.initApp();
   }
   initEvents() {
     this.formEl.addEventListener("submit", (e) => {
