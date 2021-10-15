@@ -34,7 +34,7 @@
     margin-bottom: 1.15em;
     font-size: 1.625rem;
     letter-spacing: -0.01em;
-    font-weight: 400;
+    font-weight: 500;
     color: $clr-title;
     @include mq("md") {
       font-size: 2rem;
@@ -147,7 +147,7 @@
 
     @include mq("lg") {
       text-align: left;
-      flex-grow: 1;
+      padding-right: 32px;
       flex-basis: 25%;
     }
     .isColapsed & {
@@ -180,6 +180,7 @@
     color: $clr-secondary;
     font-size: 0.625rem;
     text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 0.146em;
     @include mq("lg") {
       font-size: 0.75rem;
