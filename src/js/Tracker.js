@@ -60,8 +60,6 @@ export default class Tracker {
       `/.netlify/functions/fetchGeodata?query=${query}`
     );
     const data = await response.json();
-    console.log(response);
-    console.log(data);
     if (!response.ok) {
       const error = new Error("An error occured while fetching the data");
       error.code = response.status;
